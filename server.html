@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- class -->
+
+    package abc;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class servlet2 extends HttpServlet {
+	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		int n1 = Integer.parseInt(request.getParameter("txt1"));
+		int n2 = Integer.parseInt(request.getParameter("txt2"));
+		
+		PrintWriter p = response.getWriter();
+		
+		String a = request.getParameter("cal");
+		
+		if("addition".equalsIgnoreCase(a)) {
+			int sum = n1+n2;
+			p.println("Sum = "+sum);
+		}
+		else if("Substraction".equalsIgnoreCase(a)) {
+			int sub = n1-n2;
+			p.println("Sub = "+sub);
+		}
+		else if("multi".equalsIgnoreCase(a)) {
+			int multi = n1*n2;
+			p.println("Multi = "+multi);
+		}
+		else if("div".equalsIgnoreCase(a)) {
+			int divide = n1%n2;
+			p.println("Multi = "+divide);
+		}
+		
+	}
+}
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form method="post" action="myurl">
+        Enter number 1: <input type="text" name="txt1">
+         Enter number 2: <input type="text" name="txt2">
+        <br>
+        <input type="submit" name="cal" value="Addition">
+         <input type="submit" name = "cal" value="Substraction">
+         <input type="submit" name="cal" value="multi">
+         <input type="submit" name="cal" value="div">
+</form>
+
+</body>
+</html>
+
+
+   
+    
+
+
+
+
+
+
+<!-- webxml -->
+
+    <servlet>
+        <servlet-name>servlet2</servlet-name>
+        <servlet-class>abc.servlet2</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>servlet2</servlet-name>
+        <url-pattern>/myurl</url-pattern>
+    </servlet-mapping>
+    
+</body>
+</html>
