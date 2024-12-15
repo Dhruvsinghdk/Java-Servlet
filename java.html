@@ -1,0 +1,68 @@
+
+package abc;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class Myserver extends HttpServlet {
+	
+	public void service(HttpServletRequest request, HttpServletResponse response ) throws IOException {
+		
+		String n = request.getParameter("nametxtbox");
+		
+		PrintWriter pw = response.getWriter();
+		
+		pw.println("welcome.."+n);
+		
+	}
+	
+}
+////////////////////////////////////
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form method="post"  action="myurl">
+        Enter Name : <input type="text" name="nametxtbox">
+        <br>
+        <input type="submit" value="click me">
+        
+        </form>
+
+</body>
+</html>
+////////////////////////////////
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>Myservlet</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+        <servlet-name>Myserver</servlet-name>
+        <servlet-class>abc.Myserver</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Myserver</servlet-name>
+        <url-pattern>/myurl</url-pattern>
+    </servlet-mapping>
+  
+  
+</web-app>
